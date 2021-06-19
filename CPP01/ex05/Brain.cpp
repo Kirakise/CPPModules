@@ -1,0 +1,8 @@
+#include "Brain.hpp"
+
+Brain::Brain(){};
+
+Brain *Brain::indetify()
+{
+    return this;
+}
