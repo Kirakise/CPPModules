@@ -1,11 +1,33 @@
-#include "Human.hpp"
-#include <iostream>
-#include <string>
+#include "Karen.hpp"
 
 int main()
 {
-    Human bob;
-
-    std::cout << bob.indetify() << std::endl;
-    std::cout << bob.GetBrain()->indetify() << std::endl;
+    Karen::complain("debug");
+    Karen::complain("warning");
+    Karen::complain("info");
+    Karen::complain("error");
+    Karen::complain("debug");
+    Karen::complain("warning");
+    Karen::complain("info");
+    Karen::complain("error");
+    Karen::complain("debug");
+    Karen::complain("warning");
+    Karen::complain("info");
+    Karen::complain("error");
+    Karen::complain("debug");
+    Karen::complain("warning");
+    Karen::complain("info");
+    Karen::complain("error");
+    Karen::complain("debug");
+    Karen::complain("warning");
+    Karen::complain("info");
+    Karen::complain("error");
+    Karen::complain("debug");
+    Karen::complain("warning");
+    Karen::complain("info");
+    Karen::complain("error");
+    Karen::complain("debug");
+    Karen::complain("warning");
+    Karen::complain("info");
+    Karen::complain("error");
 }

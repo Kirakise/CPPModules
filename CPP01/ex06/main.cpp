@@ -1,22 +1,49 @@
-#include "Human.hpp"
-#include <iostream>
+#include "Karen.hpp"
+#include <string>
 
-int main()
+int main(int argc, char **argv)
 {
-    int a;
+    std::string s;
+
+    if (argc > 2)
     {
-    Weapon club = Weapon("crude spiked club");
-    HumanA bob("Bob", club);
-    bob.attack();
-    club.setType("some other type of club");
-    bob.attack();
+        std::cout << "invalid amount of args" << std::endl;
+        return 1;
     }
+    if (argc == 2)
     {
-    HumanB jim("Jim");
-    Weapon club = Weapon("crude spiked club");
-    jim.setWeapon(club);
-    jim.attack();
-    club.setType("some other type of club");
-    jim.attack();
+        s.append(argv[1]);
+        for (unsigned long i = 0; i < s.length(); i++)
+            s[i] = tolower(s[i]);
+        Karen::setlevel(s);
     }
+    Karen::complain("debug");
+    Karen::complain("warning");
+    Karen::complain("info");
+    Karen::complain("error");
+    Karen::complain("debug");
+    Karen::complain("warning");
+    Karen::complain("info");
+    Karen::complain("error");
+    Karen::complain("debug");
+    Karen::complain("warning");
+    Karen::complain("info");
+    Karen::complain("error");
+    Karen::complain("debug");
+    Karen::complain("warning");
+    Karen::complain("info");
+    Karen::complain("error");
+    Karen::complain("debug");
+    Karen::complain("warning");
+    Karen::complain("info");
+    Karen::complain("error");
+    Karen::complain("debug");
+    Karen::complain("warning");
+    Karen::complain("info");
+    Karen::complain("error");
+    Karen::complain("debug");
+    Karen::complain("warning");
+    Karen::complain("info");
+    Karen::complain("error");
+    return (0);
 }
