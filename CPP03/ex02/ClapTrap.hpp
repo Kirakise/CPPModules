@@ -2,13 +2,13 @@
 #include <string>
 
 class ClapTrap{
-    public:
+    protected:
     std::string name;
     int Hitpoints;
     int EnergyPoints;
     int Damage;
+    public:
     ClapTrap(std::string name);
-    ClapTrap();
     ~ClapTrap();
     void attack(std::string const & target);
     void takeDamage(unsigned int amount);

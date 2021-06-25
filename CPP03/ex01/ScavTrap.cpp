@@ -1,19 +1,9 @@
 #include "ScavTrap.hpp"
 #include <iostream>
 
-ScavTrap::ScavTrap()
+ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
     std::cout << "This pretty one was created" << std::endl;
-    this->name = "ScavTrap";
-    this->Damage = 20;
-    this->Hitpoints = 100;
-    this->EnergyPoints = 50;
-}
-
-ScavTrap::ScavTrap(std::string name)
-{
-    std::cout << "This pretty one was created" << std::endl;
-    this->name = name;
     this->Damage = 20;
     this->Hitpoints = 100;
     this->EnergyPoints = 50;

@@ -1,22 +1,9 @@
 #include "ClapTrap.hpp"
 #include <iostream>
 
-ClapTrap::ClapTrap()
+ClapTrap::ClapTrap(std::string name) : name(name), Hitpoints(10), EnergyPoints(10), Damage(0)
 {
     std::cout << "Aaaaaand CREATE!" << std::endl;
-    this->name = "UnknownClapTrap";
-    this->Hitpoints = 10;
-    this->EnergyPoints = 10;
-    this->Damage = 0;
-}
-
-ClapTrap::ClapTrap(std::string name)
-{
-    std::cout << "Aaaaaand CREATE!" << std::endl;
-    this->name = name;
-    this->Hitpoints = 10;
-    this->EnergyPoints = 10;
-    this->Damage = 0;
 }
 
 ClapTrap::~ClapTrap()
@@ -40,4 +27,5 @@ void ClapTrap::attack(std::string const &target)
 {
     std::cout << "FR4G-TP " << this->name << " attacks " << target <<
     ", causing " <<  this->Damage << " points of damage!" << std::endl;
+    this->EnergyPoints -= 1;
 }
