@@ -8,6 +8,11 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : name(name), grade(grade)
         throw Bureaucrat::GradeTooLowExp();
 }
 
+void Bureaucrat::executeForm(Form const & form)
+{
+	form.execute(*this);
+}
+
 Bureaucrat::Bureaucrat(const Bureaucrat& copy) 
 {
 	if (copy.getGrade() <= 0)
@@ -30,6 +35,11 @@ std::string Bureaucrat::getName(void) const {
 }
 int Bureaucrat::getGrade(void) const {
     return (this->grade);
+}
+
+void Bureaucrat::signForm(Form &f)
+{
+	f.beSigned(*this);
 }
 
 void Bureaucrat::upGrade(void)
@@ -63,6 +73,6 @@ const char * Bureaucrat::GradeTooLowExp::what() const throw() {return "Grade too
 
 std::ostream &operator<<(std::ostream & out, const Bureaucrat & bureaucrat)
 {
-	out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << std::endl;
+	out << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade();
 	return (out);
 }

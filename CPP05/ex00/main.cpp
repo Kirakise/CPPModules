@@ -9,14 +9,13 @@ int main()
     {
         std::cout << *bureaucrat;
         bureaucrat->upGrade();
-        std::cout << bureaucrat->getName() << " upgraded ! Felicitations! " << std::endl;
         std::cout << *bureaucrat;
         bureaucrat->upGrade();
-        std::cerr << "[+][1] Exception does'nt work nicely. " << std::endl;
+        std::cerr << "Exp does'nt work nicely. " << std::endl;
     }
     catch (std::exception & e)
     {
-        std::cerr <<  e.GradeTooHigh() << std::endl;
+        std::cerr <<  e.what() << std::endl;
     }
 
     // Test ++
@@ -26,11 +25,11 @@ int main()
         stagiaire->downGrade();
         std::cout << *stagiaire;
         stagiaire->downGrade();
-        std::cerr << "Exception does'nt work nicely. " << std::endl;
+        std::cerr << "Exp does'nt work nicely. " << std::endl;
     }
     catch (std::exception & e)
     {
-        std::cerr <<  e.GradeTooLow() << std::endl;
+        std::cerr <<  e.what() << std::endl;
     }
 
     Bureaucrat* toHigh;
@@ -40,23 +39,22 @@ int main()
     try
     {
         toHigh = new Bureaucrat("ToHigh", 0);
-        std::cerr << "Exception does'nt work nicely. " << std::endl;
+        std::cerr << "Exp does'nt work nicely. " << std::endl;
     }
     catch (std::exception & e)
     {
-        std::cerr << "Exception : " << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
     }
     
     try
     {
         toLow = new Bureaucrat("ToLow", 420);
-        std::cerr << "Exception does'nt work nicely. " << std::endl;
+        std::cerr << "Exp does'nt work nicely. " << std::endl;
     }
     catch (std::exception & e)
     {
-        std::cerr << "Exception : " << e.what() << std::endl;
+        std::cerr << e.what() << std::endl;
     }
-    
     delete bureaucrat;
     delete stagiaire;
 }

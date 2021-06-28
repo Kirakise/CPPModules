@@ -32,6 +32,11 @@ int Bureaucrat::getGrade(void) const {
     return (this->grade);
 }
 
+void Bureaucrat::signForm(Form &f)
+{
+	f.beSigned(*this);
+}
+
 void Bureaucrat::upGrade(void)
 {
 	if (this->grade <= 1)

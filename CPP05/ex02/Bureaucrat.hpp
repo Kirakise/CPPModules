@@ -1,6 +1,9 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include "Form.hpp"
+
+class Form;
 
 class Bureaucrat{
     std::string const name;
@@ -14,6 +17,9 @@ class Bureaucrat{
     void downGrade();
     std::string getName() const;
     int getGrade() const;
+    void signForm(Form &);
+    void executeForm(Form const & form);
+
     class GradeTooHighExp : public std::exception
     {
         public:
