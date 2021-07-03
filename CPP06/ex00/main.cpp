@@ -4,25 +4,39 @@
 #include <cstdlib>
 #include <limits>
 #include <regex>
-
+#include <iomanip>
 
 
 int parse(std::string s)
 {
-    std::regex str("(\\D)");
-    std::regex i("([+-]?\\d{1,10})");
-    std::regex d("((nan|[+-]?\\d*[.]\\d*|[+-]inf))");
-    std::regex f("((nanf|[+-]?\\d*[.]\\d*f|[+-]inff))");
-    if (std::regex_match(s, str))
+    unsigned long i = 0;
+    int type = 0;
+    if (s.length() == 1 && !std::isdigit(s[0]))
         return 1;
-    else if (std::regex_match(s, i))
-        return 2;
-    else if (std::regex_match(s, f))
-        return 3;
-    else if (std::regex_match(s, d))
+    if (s == "nan" || s == "+inf" || s == "-inf")
         return 4;
-    else
-        return -1;
+    if (s == "nanf" || s == "+inff" || s == "-inff")
+        return 3;
+    type = 2;
+    if (s[i] == '+'|| s[i] == '-')
+        i++;
+    while (i < s.length())
+    {
+        if (s[i] == '.' && type != 4)
+            type = 4;
+        else if (s[i] == '.' && type == 4)
+            return -1;
+        if (s[i] == '.' && i == s.length() - 1)
+            return -1;
+        if (s[i] == 'f' && s.length() - 1 == i)
+            return 3;
+        else if (s[i] == 'f' && s.length() - 1 != i)
+            return -1;
+        if (!std::isdigit(s[i]) && s[i] != '.' && s[i] != 'f')
+            return -1;
+        i++;
+    }
+    return type;
 }
 
 void treaterror()
@@ -38,8 +52,8 @@ void treatchar(std::string s)
     char tmp = s[0];
     std::cout << "Char: " << s << std::endl;
     std::cout << "Int: " << static_cast<int>(tmp) << std::endl;
-    std::cout << "Float: " << static_cast<float>(tmp) << std::endl;
-    std::cout << "Double " << static_cast<double>(tmp) << std::endl;
+    std::cout << "Float: " << static_cast<float>(tmp) << ".0f" << std::endl;
+    std::cout << "Double " << static_cast<double>(tmp) << ".0" << std::endl;
 }
 
 void treatint(std::string s)
@@ -60,20 +74,19 @@ void treatint(std::string s)
     else
         std::cout << "Char: " << static_cast<char>(i) << std::endl;
     std::cout << "Int: " << static_cast<int>(i) << std::endl;
-    std::cout << "Float: " << static_cast<float>(i) << std::endl;
-    std::cout << "Double " << static_cast<double>(i) << std::endl;
+    std::cout << "Float: " << static_cast<float>(i) << ".0f" << std::endl;
+    std::cout << "Double " << static_cast<double>(i) << ".0" << std::endl;
 }
 
 void treatfloat(std::string s)
 {
     float f;
     float tmp;
-    float tmp2;
     std::string::size_type sz;
     s.pop_back();
 
     f = std::stof(s, &sz);
-    tmp = std::modf(f, &tmp2);
+    tmp = f - (long)f;
     if (sz != s.length())
     {
         treaterror();
@@ -89,19 +102,24 @@ void treatfloat(std::string s)
         std::cout << "Int: " << "Impossible" << std::endl;
     else
         std::cout << "Int: " << static_cast<int>(f) << std::endl;
-    std::cout << "Float: " << f << std::endl;
-    std::cout << "Double " << static_cast<double>(f) << std::endl;
+    if (tmp)
+        std::cout << "Float: " <<  static_cast<float>(f) << "f" << std::endl;
+    else
+        std::cout << "Float: " << static_cast<float>(f) << ".0f" << std::endl;
+    if (tmp)
+        std::cout << "Double " << f << std::endl;
+    else
+        std::cout << "Double " << f << ".0" << std::endl;
 }
 
 void treatdouble(std::string s)
 {
     double f;
     double tmp;
-    double tmp2;
     std::string::size_type sz;
 
     f = std::stod(s, &sz);
-    tmp = std::modf(f, &tmp2);
+    tmp = f - (long)f;
     if (sz != s.length())
     {
         treaterror();
@@ -117,8 +135,14 @@ void treatdouble(std::string s)
         std::cout << "Int: " << "Impossible" << std::endl;
     else
         std::cout << "Int: " << static_cast<int>(f) << std::endl;
-    std::cout << "Float: " << static_cast<float>(f) << std::endl;
-    std::cout << "Double " << f << std::endl;
+    if (tmp)
+        std::cout << "Float: " <<  static_cast<float>(f) << "f" << std::endl;
+    else
+        std::cout << "Float: " << static_cast<float>(f) << ".0f" << std::endl;
+    if (tmp)
+        std::cout << "Double " << f << std::endl;
+    else
+        std::cout << "Double " << f << ".0" << std::endl;
 }
 
 int main(int argc, char **argv)
