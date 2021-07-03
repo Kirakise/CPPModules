@@ -14,7 +14,11 @@ Squad &Squad::operator=(Squad const &obj)
 
     tmp2 = obj.arr;
     if (!tmp2)
-        return ;
+    {
+        this->count = 0;
+        this->arr = 0;
+        return *this;
+    }
     Sq->arr = new t_lst;
     tmp = Sq->arr;
     while (tmp2)
@@ -29,7 +33,7 @@ Squad &Squad::operator=(Squad const &obj)
         }
     }
     Sq->count = obj.getCount();
-    this->count = count;
+    this->count = Sq->count;
     this->arr = Sq->arr;
 }
 
